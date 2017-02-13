@@ -7,7 +7,7 @@
 
 export default function(loaders) {
   let fallbackLoader;
-  if (loaders[0].startsWith('style')) {
+  if (loaders[0].startsWith('style') || loaders[0].endsWith('style-loader')) {
     fallbackLoader = 'style-loader';
   } else if (loaders[0].startsWith('isomorphic-style')) {
     fallbackLoader = 'isomorphic-style-loader';
