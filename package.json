@@ -1,6 +1,6 @@
 {
   "name": "@vjpr/bootstrap-loader",
-  "version": "2.0.0-beta.19-vjpr.3",
+  "version": "2.0.0-beta.19-vjpr.4",
   "description": "Boostrap for Webpack",
   "main": "loader.js",
   "scripts": {

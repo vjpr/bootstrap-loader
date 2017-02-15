@@ -7,7 +7,9 @@
 
 export default function(loaders) {
   let fallbackLoader;
-  if (loaders[0].startsWith('style') || loaders[0].endsWith('style-loader')) {
+  if (loaders[0].endsWith('style-loader')) {
+    fallbackLoader = loaders[0];
+  } else if (loaders[0].startsWith('style')) {
     fallbackLoader = 'style-loader';
   } else if (loaders[0].startsWith('isomorphic-style')) {
     fallbackLoader = 'isomorphic-style-loader';
@@ -21,6 +23,8 @@ your 'styleLoaders' array starts with 'style' or 'isomorphic-style' at index 0.
   let ExtractTextPlugin;
   try {
     // eslint-disable-next-line global-require
+    // TODO(vjpr): Will use its local version from `devDependencies` when symlinked.
+    //   We need to use one version for the entire project.
     ExtractTextPlugin = require('extract-text-webpack-plugin');
   } catch (error) {
     throw new Error(`
@@ -35,5 +39,17 @@ Error: ${error}
       .map(loader => `${loader}!`)
       .join('')
   );
-  return ExtractTextPlugin.extract({ fallbackLoader, loader: restLoaders });
+
+  //////////////////////////////////////////////////////////////////////////////
+  // TODO(vjpr): See https://github.com/shakacode/bootstrap-loader/pull/249
+  //return ExtractTextPlugin.extract({ fallbackLoader, loader: restLoaders });
+  const a = [
+    `${ExtractTextPlugin.loader().loader}?omit&remove`,
+    fallbackLoader,
+    restLoaders,
+  ].join('!');
+  console.log({a})
+  return a
+  //////////////////////////////////////////////////////////////////////////////
+
 }
