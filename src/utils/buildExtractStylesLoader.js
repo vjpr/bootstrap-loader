@@ -39,17 +39,9 @@ Error: ${error}
       .map(loader => `${loader}!`)
       .join('')
   );
-
-  //////////////////////////////////////////////////////////////////////////////
-  // TODO(vjpr): See https://github.com/shakacode/bootstrap-loader/pull/249
-  //return ExtractTextPlugin.extract({ fallbackLoader, loader: restLoaders });
-  const a = [
-    `${ExtractTextPlugin.loader().loader}?omit&remove`,
+  return [
+    `${ExtractTextPlugin.loader().loader}?{"omit":1,"remove":true}`,
     fallbackLoader,
     restLoaders,
   ].join('!');
-  console.log({a})
-  return a
-  //////////////////////////////////////////////////////////////////////////////
-
 }

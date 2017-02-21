@@ -10,7 +10,7 @@
     "build": "babel --out-dir lib src",
     "lint": "eslint --ext .js .",
     "clean": "rm -rf lib",
-    "prerelease": "npm run clean && npm run build",
+    "prerelease": "npm run lint && npm run clean && npm run build",
     "preversion": "npm run prerelease",
     "prepublish": "npm run prerelease",
     "release:patch": "scripts/release patch",
@@ -37,13 +37,15 @@
   "peerDependencies": {
     "css-loader": "*",
     "extract-text-webpack-plugin": ">=2.0.0-beta",
+    "eslint-plugin-jsx-a11y": "^2.2.3",
+    "eslint-plugin-react": "^6.6.0",
     "node-sass": "*",
     "resolve-url-loader": "*",
     "sass-loader": "*",
     "url-loader": "*",
-    "webpack": "^2.1.0-beta || ^2.2.0-rc.0",
     "bootstrap-sass": "*",
-    "bootstrap": "*"
+    "bootstrap": "*",
+    "webpack": "^2.2.0"
   },
   "dependencies": {
     "chalk": "^1.1.3",
