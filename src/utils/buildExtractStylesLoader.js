@@ -22,9 +22,9 @@ your 'styleLoaders' array starts with 'style' or 'isomorphic-style' at index 0.
 
   let ExtractTextPlugin;
   try {
-    // eslint-disable-next-line global-require
     // TODO(vjpr): Will use its local version from `devDependencies` when symlinked.
     //   We need to use one version for the entire project.
+    // eslint-disable-next-line global-require
     ExtractTextPlugin = require('extract-text-webpack-plugin');
   } catch (error) {
     throw new Error(`
